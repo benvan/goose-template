@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import {middleware as asynchMiddleware} from 'redux-asynch-middleware'
 import createSagaMiddleware from 'redux-saga'
-import {bindGooseToSagaMiddleware,loadModule,gooseMiddleware} from '@clarify/goose-module'
+import {bindGooseToSagaMiddleware,loadModule,gooseMiddleware} from '@metomic/goose-module'
 import RootModule from './modules/root'
 
 const composeEnhancers =
@@ -13,21 +13,24 @@ const composeEnhancers =
     }) : compose;
 
 
-function configureStore(initialState,history) {
+function configureStore(initialState={},history) {
   const sagaMiddleware = createSagaMiddleware()
 
 
   const store = createStore(
-    x => x, // We'll replace this (no-op) reducer in a moment
+    x => x, // We'll replace this (no-op) reducer with the root reducer below
     initialState,
-    composeEnhancers(
+    
+    // I've disabled redux-devtools for this demo because it replays events when you replace a reducer
+    // This is fine, but for this demo, the "loadedAt" values will be misleading - since they're not pure. Naughty.
+    // composeEnhancers(
       applyMiddleware(
         thunk,
         asynchMiddleware,
         sagaMiddleware,
         gooseMiddleware
       )
-    )
+    // )
 
   );
 

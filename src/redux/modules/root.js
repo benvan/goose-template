@@ -1,8 +1,10 @@
-import {Machine} from '@clarify/goose-module'
+import {Machine} from '@metomic/goose-module'
 
 
 const reducer = Machine({
   // [action] : state-transformation
+  
+  loadedAt: new Date()
 })
 
 
