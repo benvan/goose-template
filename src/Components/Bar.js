@@ -36,7 +36,7 @@ export default compose(
   withModule(BarModule),
   connect(state => ({
     foos: state.Foo.foos,
-    fooReady: Boolean(state.Foo.becameReadyAt),
+    fooReady: Boolean(state.Foo.firstBecameReadyAt),
     number: state.Bar.number
   }),{
     increment: incrementBar

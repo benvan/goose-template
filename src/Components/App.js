@@ -33,6 +33,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Asynchronous module demo</h1>
+          <div><small>Try loading the below items in different orders</small></div>
+          <div><small>(Artificial delay added to all asynchronous actions for demonstration purposes)</small></div>
         </header>
         <LazyLoadedModuleControl name="Foo Component">
           <small>I'm just some text, but since I'm inside a Suspense, I waited for my brother Foo to be ready</small>

@@ -22,6 +22,7 @@ const reducer = Machine({
     foos: []
   }),
   [FOOS_GENERATED]: ({payload:{foos}}) => updates({
+    firstBecameReadyAt: t => t || new Date().toLocaleTimeString(),
     foosWereGeneratedAt: new Date().toLocaleTimeString(),
     foos: foos,
   }),
